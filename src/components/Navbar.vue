@@ -5,7 +5,7 @@
       <div class="nav-links">
         <router-link to="/" class="nav-link">Home</router-link>
         <router-link to="/leaderboard" class="nav-link">Leaderboard</router-link>
-        <router-link v-if="user" to="/CreateQuizz" class="nav-link">Create Quiz</router-link>
+        <router-link v-if="user && isAdmin" to="/CreateQuizz" class="nav-link">Create Quiz</router-link>
         <template v-if="!user">
           <router-link to="/Login" class="nav-link">Login</router-link>
           <router-link to="/Signup" class="nav-link">Sign Up</router-link>
@@ -22,7 +22,9 @@
 
 <script>
 import { useRouter } from 'vue-router'
-import { auth } from '../firebase'
+import { auth, db } from '../firebase'
+import { ref, onMounted } from 'vue'
+import { doc, getDoc } from 'firebase/firestore'
 import getUser from '../composables/getUser'
 
 export default {
@@ -30,6 +32,17 @@ export default {
   setup() {
     const router = useRouter()
     const { user } = getUser()
+    const isAdmin = ref(false)
+
+    const checkAdminStatus = async (user) => {
+      if (user) {
+        const userDoc = await getDoc(doc(db, 'users', user.uid))
+        const userData = userDoc.data()
+        isAdmin.value = userData && userData.admin ? userData.admin : false
+      } else {
+        isAdmin.value = false
+      }
+    }
 
     const handleLogout = async () => {
       try {
@@ -40,7 +53,13 @@ export default {
       }
     }
 
-    return { user, handleLogout }
+    onMounted(async () => {
+      if (user.value) {
+        await checkAdminStatus(user.value)
+      }
+    })
+
+    return { user, isAdmin, handleLogout }
   }
 }
 </script>

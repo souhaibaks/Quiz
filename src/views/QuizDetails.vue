@@ -81,8 +81,8 @@
 <script>
 import {ref, onMounted, computed} from 'vue'
 import { useRoute } from 'vue-router';
-import {db} from '../firebase'
-import {getDoc, doc} from 'firebase/firestore'
+import {db, auth} from '../firebase'
+import {getDoc, doc, addDoc, collection, updateDoc} from 'firebase/firestore'
 
 export default {
   setup() {
@@ -111,6 +111,47 @@ export default {
       questions.value = quiz.data().questions
     }
 
+    const saveQuizResult = async () => {
+      if (!auth.currentUser) return
+
+      const percentage = (correctAnswers.value / questions.value.length) * 100
+      
+      // Save quiz result
+      await addDoc(collection(db, 'quiz_results'), {
+        userId: auth.currentUser.uid,
+        quizId: ID,
+        quizTitle: title.value,
+        topic: topic.value,
+        difficulty: difficulty.value,
+        score: correctAnswers.value,
+        totalQuestions: questions.value.length,
+        percentage: percentage,
+        timestamp: new Date(),
+        displayName: auth.currentUser.displayName
+      })
+
+      // Get current user data
+      const userRef = doc(db, 'users', auth.currentUser.uid)
+      const userDoc = await getDoc(userRef)
+      const userData = userDoc.data()
+      
+      // Calculate new average score
+      const currentQuizzesTaken = userData?.quizzesTaken || 0
+      const currentTotalScore = userData?.totalScore || 0
+      const currentAverageScore = userData?.averageScore || 0
+      
+      const newQuizzesTaken = currentQuizzesTaken + 1
+      const newTotalScore = currentTotalScore + correctAnswers.value
+      const newAverageScore = ((currentAverageScore * currentQuizzesTaken) + percentage) / newQuizzesTaken
+
+      // Update user's scores
+      await updateDoc(userRef, {
+        totalScore: newTotalScore,
+        quizzesTaken: newQuizzesTaken,
+        averageScore: newAverageScore
+      })
+    }
+
     onMounted(get_data)
 
     const submitAnswer = (i) => {
@@ -132,8 +173,9 @@ export default {
       isCorrect.value = false
     }
 
-    const finishQuiz = () => {
+    const finishQuiz = async () => {
       showResults.value = true
+      await saveQuizResult()
     }
 
     const resetQuiz = () => {

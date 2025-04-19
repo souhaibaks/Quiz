@@ -4,8 +4,8 @@
             <div class="profile-header">
                 <h1 class="profile-title">Profile</h1>
                 <div class="user-info">
-                    <h2>{{ user?.displayName }}</h2>
-                    <p>{{ user?.email }}</p>
+                    <h2>{{ user && user.displayName }}</h2>
+                    <p>{{ user && user.email }}</p>
                 </div>
             </div>
 
@@ -32,11 +32,34 @@
                         <div class="performance" :class="getPerformanceClass(result.score / result.totalQuestions)">
                             {{ getPerformanceText(result.score / result.totalQuestions) }}
                         </div>
+                        <div v-if="isAdmin" class="admin-actions">
+                            <button @click="editQuiz(result)" class="btn btn-edit">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button @click="confirmDelete(result)" class="btn btn-delete">
+                                <i class="fas fa-trash-alt"></i> Delete
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div v-else class="no-history">
                     <p>You haven't taken any quizzes yet.</p>
                     <router-link to="/" class="btn btn-primary">Browse Quizzes</router-link>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delete Confirmation Modal -->
+        <div v-if="showDeleteModal" class="modal">
+            <div class="modal-content">
+                <h3>Confirm Delete</h3>
+                <p>Are you sure you want to delete this quiz result?</p>
+                <p class="warning">This action cannot be undone!</p>
+                <div class="modal-actions">
+                    <button @click="deleteQuiz" class="btn btn-delete" :disabled="isLoading">
+                        {{ isLoading ? 'Deleting...' : 'Delete' }}
+                    </button>
+                    <button @click="cancelDelete" class="btn btn-secondary">Cancel</button>
                 </div>
             </div>
         </div>
@@ -46,12 +69,27 @@
 <script>
 import { ref, onMounted } from 'vue'
 import { db, auth } from '../firebase'
-import { collection, query, where, getDocs, orderBy } from 'firebase/firestore'
+import { collection, query, where, getDocs, orderBy, deleteDoc, doc, getDoc } from 'firebase/firestore'
+import { useRouter } from 'vue-router'
 
 export default {
     setup() {
         const user = ref(null)
         const quizHistory = ref([])
+        const isAdmin = ref(false)
+        const router = useRouter()
+        const isLoading = ref(false)
+        const showDeleteModal = ref(false)
+        const selectedResult = ref(null)
+
+        const checkAdminStatus = async (user) => {
+            if (user) {
+                const userDoc = await getDoc(doc(db, 'users', user.uid))
+                isAdmin.value = userDoc.data()?.admin ?? false
+            } else {
+                isAdmin.value = false
+            }
+        }
 
         const loadQuizHistory = async () => {
             if (!auth.currentUser) return
@@ -83,16 +121,56 @@ export default {
             return 'Keep Practicing'
         }
 
-        onMounted(() => {
+        const editQuiz = (result) => {
+            router.push({ name: 'editQuiz', params: { id: result.quizId } })
+        }
+
+        const confirmDelete = (result) => {
+            selectedResult.value = result
+            showDeleteModal.value = true
+        }
+
+        const cancelDelete = () => {
+            selectedResult.value = null
+            showDeleteModal.value = false
+        }
+
+        const deleteQuiz = async () => {
+            if (!selectedResult.value) return
+
+            try {
+                isLoading.value = true
+                await deleteDoc(doc(db, "quiz_results", selectedResult.value.id))
+                await loadQuizHistory()
+            } catch (error) {
+                console.error('Error deleting quiz result:', error)
+            } finally {
+                isLoading.value = false
+                showDeleteModal.value = false
+                selectedResult.value = null
+            }
+        }
+
+        onMounted(async () => {
             user.value = auth.currentUser
+            if (user.value) {
+                await checkAdminStatus(user.value)
+            }
             loadQuizHistory()
         })
 
         return {
             user,
             quizHistory,
+            isAdmin,
             getPerformanceClass,
-            getPerformanceText
+            getPerformanceText,
+            editQuiz,
+            confirmDelete,
+            cancelDelete,
+            deleteQuiz,
+            showDeleteModal,
+            isLoading
         }
     }
 }
@@ -226,6 +304,75 @@ export default {
     opacity: 0.9;
 }
 
+.admin-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+
+.btn-edit {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.btn-delete {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.btn-edit:hover,
+.btn-delete:hover {
+    opacity: 0.9;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    max-width: 500px;
+    width: 90%;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 2rem;
+}
+
+.warning {
+    color: #e74c3c;
+    font-weight: 500;
+    margin-top: 0.5rem;
+}
+
 @media (max-width: 768px) {
     .profile-container {
         padding: 0 1rem;
@@ -242,6 +389,15 @@ export default {
     .quiz-meta {
         flex-direction: column;
         gap: 0.25rem;
+    }
+
+    .admin-actions {
+        flex-direction: column;
+    }
+    
+    .btn-edit,
+    .btn-delete {
+        width: 100%;
     }
 }
 </style> 
