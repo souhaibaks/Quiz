@@ -1,5 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import signup from '../components/SignupForm.vue'
+import login from '../components/LoginForm.vue'
+import createquizz from '@/components/createQuizz.vue'
+import quizDetails from '@/components/quizDetails.vue'
 
 const routes = [
   {
@@ -8,20 +12,22 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/register',
-    name: 'register',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Register.vue')
-  },
+    path:'/Signup',
+    name: 'Signup',
+    component: signup
+  }, 
   {
-    path: '/signin',
-    name: 'signin',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Signin.vue')
+    path:'/Login',
+    name: 'Login',
+    component: login
+  },
+  {path:'/CreateQuizz',
+    name:'Createquizz',
+    component: createquizz
+  }, {
+    path:'/listquiz/:id',
+    name:'quizdetail',
+    component: quizDetails
   }
 ]
 
