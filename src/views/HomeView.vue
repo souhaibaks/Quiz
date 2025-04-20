@@ -1,12 +1,8 @@
 <template>
   <div class="home">
-    <router-link to="/Signup">Sign Up</router-link>
-    <router-link to="/Login">Login</router-link>
-    <router-link to="/CreateQuizz" v-if="is_admin">Create Quiz</router-link>
+    <h1 v-if="user">Hello {{ user.displayName }}</h1>
+    <listQuiz/>
   </div>
-  <h1 v-if="user">Hello {{ user.displayName }}</h1>
-  <listQuiz/>
-  <RouterView/>
 </template>
 
 <script>
@@ -23,27 +19,29 @@ export default {
   setup() {
     const user = ref(null);
     const is_admin = ref(null)
+    
     onMounted(() => {
       onAuthStateChanged(auth, async (u) => {
         if (u) {
           user.value = u
           const userDoc = await getDoc(doc(db, 'users', u.uid))
           is_admin.value = userDoc.data()?.admin ?? false
-
         }
       })
-
     })
-
     
     return {
       user,
       is_admin
     }
   }
-  
-
-  
-  
 }
 </script>
+
+<style scoped>
+.home {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+</style>
