@@ -82,7 +82,7 @@
 import {ref, onMounted, computed} from 'vue'
 import { useRoute } from 'vue-router';
 import {db, auth} from '../firebase'
-import {getDoc, doc, addDoc, collection, updateDoc} from 'firebase/firestore'
+import {getDoc, doc, addDoc, collection, updateDoc, setDoc} from 'firebase/firestore'
 
 export default {
   setup() {
@@ -133,23 +133,35 @@ export default {
       // Get current user data
       const userRef = doc(db, 'users', auth.currentUser.uid)
       const userDoc = await getDoc(userRef)
-      const userData = userDoc.data()
       
-      // Calculate new average score
-      const currentQuizzesTaken = userData?.quizzesTaken || 0
-      const currentTotalScore = userData?.totalScore || 0
-      const currentAverageScore = userData?.averageScore || 0
-      
-      const newQuizzesTaken = currentQuizzesTaken + 1
-      const newTotalScore = currentTotalScore + correctAnswers.value
-      const newAverageScore = ((currentAverageScore * currentQuizzesTaken) + percentage) / newQuizzesTaken
+      // Initialize user data if document doesn't exist
+      if (!userDoc.exists()) {
+        await setDoc(userRef, {
+          displayName: auth.currentUser.displayName,
+          email: auth.currentUser.email,
+          totalScore: correctAnswers.value,
+          quizzesTaken: 1,
+          averageScore: percentage
+        })
+      } else {
+        const userData = userDoc.data()
+        
+        // Calculate new average score
+        const currentQuizzesTaken = userData.quizzesTaken || 0
+        const currentAverageScore = userData.averageScore || 0
+        
+        const newQuizzesTaken = currentQuizzesTaken + 1
+        const newAverageScore = currentQuizzesTaken === 0 
+          ? percentage 
+          : ((currentAverageScore * currentQuizzesTaken) + percentage) / newQuizzesTaken
 
-      // Update user's scores
-      await updateDoc(userRef, {
-        totalScore: newTotalScore,
-        quizzesTaken: newQuizzesTaken,
-        averageScore: newAverageScore
-      })
+        // Update user's scores
+        await updateDoc(userRef, {
+          totalScore: (userData.totalScore || 0) + correctAnswers.value,
+          quizzesTaken: newQuizzesTaken,
+          averageScore: newAverageScore
+        })
+      }
     }
 
     onMounted(get_data)

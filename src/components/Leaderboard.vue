@@ -15,6 +15,27 @@
             >
                 Quiz Leaderboards
             </button>
+            <button 
+                v-if="isAdmin"
+                @click="confirmReset"
+                class="tab-button reset-button"
+            >
+                Reset Leaderboard
+            </button>
+        </div>
+
+        <!-- Reset Confirmation Modal -->
+        <div v-if="showResetModal" class="modal">
+            <div class="modal-content">
+                <h3>Reset Leaderboard</h3>
+                <p>Are you sure you want to reset all user scores? This action cannot be undone!</p>
+                <div class="modal-actions">
+                    <button @click="resetLeaderboard" class="btn btn-danger" :disabled="isResetting">
+                        {{ isResetting ? 'Resetting...' : 'Reset' }}
+                    </button>
+                    <button @click="cancelReset" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
         </div>
 
         <!-- Global Leaderboard -->
@@ -26,7 +47,7 @@
                         #{{ index + 1 }}
                     </div>
                     <div class="user-info">
-                        <span class="username">{{ user.displayName }}</span>
+                        <span class="username">{{ user.name }}</span>
                         <span class="total-score">Total Score: {{ user.totalScore }}</span>
                     </div>
                     <div class="stats">
@@ -78,8 +99,8 @@
 
 <script>
 import { ref, onMounted, watch } from 'vue'
-import { db } from '../firebase'
-import { collection, query, orderBy, limit, getDocs, where } from 'firebase/firestore'
+import { db, auth } from '../firebase'
+import { collection, query, orderBy, limit, getDocs, where, doc, writeBatch, getDoc } from 'firebase/firestore'
 
 export default {
     name: 'QuizLeaderboard',
@@ -89,11 +110,61 @@ export default {
         const quizLeaderboard = ref([])
         const quizzes = ref([])
         const selectedQuiz = ref('')
+        const isAdmin = ref(false)
+        const showResetModal = ref(false)
+        const isResetting = ref(false)
+
+        const checkAdminStatus = async () => {
+            if (auth.currentUser) {
+                const userDocRef = doc(db, 'users', auth.currentUser.uid)
+                const userDoc = await getDoc(userDocRef)
+                isAdmin.value = userDoc.data()?.admin ?? false
+            }
+        }
+
+        const confirmReset = () => {
+            showResetModal.value = true
+        }
+
+        const cancelReset = () => {
+            showResetModal.value = false
+        }
+
+        const resetLeaderboard = async () => {
+            try {
+                isResetting.value = true
+                const batch = writeBatch(db)
+                
+                // Reset all users' scores
+                const usersSnapshot = await getDocs(collection(db, 'users'))
+                usersSnapshot.forEach((userDoc) => {
+                    batch.update(doc(db, 'users', userDoc.id), {
+                        totalScore: 0,
+                        quizzesTaken: 0,
+                        averageScore: 0
+                    })
+                })
+
+                // Delete all quiz results
+                const resultsSnapshot = await getDocs(collection(db, 'quiz_results'))
+                resultsSnapshot.forEach((resultDoc) => {
+                    batch.delete(doc(db, 'quiz_results', resultDoc.id))
+                })
+
+                await batch.commit()
+                await loadGlobalLeaderboard()
+                showResetModal.value = false
+            } catch (error) {
+                console.error('Error resetting leaderboard:', error)
+            } finally {
+                isResetting.value = false
+            }
+        }
 
         const loadGlobalLeaderboard = async () => {
             const q = query(
                 collection(db, 'users'),
-                orderBy('totalScore', 'desc'),
+                orderBy('averageScore', 'desc'),
                 limit(10)
             )
             const querySnapshot = await getDocs(q)
@@ -164,6 +235,7 @@ export default {
         onMounted(() => {
             loadGlobalLeaderboard()
             loadQuizzes()
+            checkAdminStatus()
         })
 
         return {
@@ -172,7 +244,13 @@ export default {
             quizLeaderboard,
             quizzes,
             selectedQuiz,
-            getQuizTitle
+            getQuizTitle,
+            isAdmin,
+            showResetModal,
+            isResetting,
+            confirmReset,
+            cancelReset,
+            resetLeaderboard
         }
     }
 }
@@ -295,6 +373,57 @@ export default {
     font-size: 1.2rem;
     font-weight: bold;
     color: var(--primary-color);
+}
+
+.reset-button {
+    background-color: #dc3545;
+    color: white;
+}
+
+.reset-button:hover {
+    background-color: #c82333;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    max-width: 500px;
+    width: 90%;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 2rem;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.btn-danger:disabled {
+    background-color: #e4606d;
+    cursor: not-allowed;
 }
 
 @media (max-width: 768px) {
