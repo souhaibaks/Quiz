@@ -24,4 +24,4 @@ npm run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 Group Members
 
-Yahya El-Tantaoui Mohamed Souhaib Aksikas Mohamed Ait Lahcen
+Yahya El-Tantaoui | Mohamed Souhaib Aksikas | Mohamed Ait Lahcen
