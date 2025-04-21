@@ -1,0 +1,301 @@
+[debug] [2025-04-21T10:26:39.042Z] ----------------------------------------------------------------------
+[debug] [2025-04-21T10:26:39.043Z] Command:       /Users/souhaib./.nvm/versions/node/v22.14.0/bin/node /Users/souhaib./.nvm/versions/node/v22.14.0/bin/firebase login
+[debug] [2025-04-21T10:26:39.043Z] CLI Version:   14.2.0
+[debug] [2025-04-21T10:26:39.044Z] Platform:      darwin
+[debug] [2025-04-21T10:26:39.044Z] Node Version:  v22.14.0
+[debug] [2025-04-21T10:26:39.044Z] Time:          Mon Apr 21 2025 11:26:39 GMT+0100 (GMT+01:00)
+[debug] [2025-04-21T10:26:39.044Z] ----------------------------------------------------------------------
+[debug] 
+[info] i  Firebase optionally collects CLI and Emulator Suite usage and error reporting information to help improve our products. Data is collected in accordance with Google's privacy policy (https://policies.google.com/privacy) and is not used to identify you.
+ 
+[info] i  To change your data collection preference at any time, run `firebase logout` and log in again. 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=300436314&redirect_uri=http%3A%2F%2Flocalhost%3A9005
+[info] 
+[info] Waiting for authentication...
+[debug] [2025-04-21T10:27:39.188Z] >>> [apiv2][query] POST https://accounts.google.com/o/oauth2/token [none]
+[debug] [2025-04-21T10:27:39.189Z] >>> [apiv2][body] POST https://accounts.google.com/o/oauth2/token [omitted]
+[debug] [2025-04-21T10:27:39.501Z] <<< [apiv2][status] POST https://accounts.google.com/o/oauth2/token 200
+[debug] [2025-04-21T10:27:39.501Z] <<< [apiv2][body] POST https://accounts.google.com/o/oauth2/token [omitted]
+[info] 
+[info] ✔  Success! Logged in as souhaibaksikas@gmail.com 
+[debug] [2025-04-21T10:27:49.559Z] Error: Timed out.
+    at Timeout._onTimeout (/Users/souhaib./.nvm/versions/node/v22.14.0/lib/node_modules/firebase-tools/lib/utils.js:269:49)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2025-04-21T10:28:12.755Z] ----------------------------------------------------------------------
+[debug] [2025-04-21T10:28:12.757Z] Command:       /Users/souhaib./.nvm/versions/node/v22.14.0/bin/node /Users/souhaib./.nvm/versions/node/v22.14.0/bin/firebase init
+[debug] [2025-04-21T10:28:12.757Z] CLI Version:   14.2.0
+[debug] [2025-04-21T10:28:12.757Z] Platform:      darwin
+[debug] [2025-04-21T10:28:12.757Z] Node Version:  v22.14.0
+[debug] [2025-04-21T10:28:12.757Z] Time:          Mon Apr 21 2025 11:28:12 GMT+0100 (GMT+01:00)
+[debug] [2025-04-21T10:28:12.757Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-04-21T10:28:12.859Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-04-21T10:28:12.859Z] > authorizing via signed-in user (souhaibaksikas@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/souhaib.
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2025-04-21T10:28:23.039Z] Using project from CLI flag: tp-forum-e8056
+[debug] [2025-04-21T10:28:23.040Z] Checked if tokens are valid: true, expires at: 1745234858501
+[debug] [2025-04-21T10:28:23.040Z] Checked if tokens are valid: true, expires at: 1745234858501
+[debug] [2025-04-21T10:28:23.042Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/tp-forum-e8056 [none]
+[debug] [2025-04-21T10:28:23.506Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/tp-forum-e8056 200
+[debug] [2025-04-21T10:28:23.506Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/tp-forum-e8056 {"projectId":"tp-forum-e8056","projectNumber":"1022099603253","displayName":"TP-Forum","name":"projects/tp-forum-e8056","resources":{"hostingSite":"tp-forum-e8056"},"state":"ACTIVE","etag":"1_d879ba16-4187-4e42-9a1a-19d380278410"}
+[info] i  Using project tp-forum-e8056 (TP-Forum) 
+[info] 
+=== Hosting Setup
+[debug] [2025-04-21T10:28:23.517Z] Checked if tokens are valid: true, expires at: 1745234858501
+[debug] [2025-04-21T10:28:23.517Z] Checked if tokens are valid: true, expires at: 1745234858501
+[debug] [2025-04-21T10:28:23.517Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/tp-forum-e8056 [none]
+[debug] [2025-04-21T10:28:23.759Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/tp-forum-e8056 200
+[debug] [2025-04-21T10:28:23.759Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/tp-forum-e8056 {"projectId":"tp-forum-e8056","projectNumber":"1022099603253","displayName":"TP-Forum","name":"projects/tp-forum-e8056","resources":{"hostingSite":"tp-forum-e8056"},"state":"ACTIVE","etag":"1_d879ba16-4187-4e42-9a1a-19d380278410"}
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
+[debug] [2025-04-21T10:29:09.772Z] ----------------------------------------------------------------------
+[debug] [2025-04-21T10:29:09.774Z] Command:       /Users/souhaib./.nvm/versions/node/v22.14.0/bin/node /Users/souhaib./.nvm/versions/node/v22.14.0/bin/firebase projects:list
+[debug] [2025-04-21T10:29:09.774Z] CLI Version:   14.2.0
+[debug] [2025-04-21T10:29:09.774Z] Platform:      darwin
+[debug] [2025-04-21T10:29:09.774Z] Node Version:  v22.14.0
+[debug] [2025-04-21T10:29:09.774Z] Time:          Mon Apr 21 2025 11:29:09 GMT+0100 (GMT+01:00)
+[debug] [2025-04-21T10:29:09.774Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-04-21T10:29:09.881Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-04-21T10:29:09.881Z] > authorizing via signed-in user (souhaibaksikas@gmail.com)
+[debug] [2025-04-21T10:29:09.884Z] Checked if tokens are valid: true, expires at: 1745234858501
+[debug] [2025-04-21T10:29:09.884Z] Checked if tokens are valid: true, expires at: 1745234858501
+[debug] [2025-04-21T10:29:09.884Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000
+[debug] [2025-04-21T10:29:10.901Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2025-04-21T10:29:10.902Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] ┌──────────────────────┬──────────────────────────┬────────────────┬──────────────────────┐
+│ Project Display Name │ Project ID               │ Project Number │ Resource Location ID │
+├──────────────────────┼──────────────────────────┼────────────────┼──────────────────────┤
+│ quizz-project        │ quizz-project-d8d8c      │ 475576911820   │ [Not specified]      │
+├──────────────────────┼──────────────────────────┼────────────────┼──────────────────────┤
+│ TP-Forum             │ tp-forum-e8056 (current) │ 1022099603253  │ [Not specified]      │
+└──────────────────────┴──────────────────────────┴────────────────┴──────────────────────┘
+[info] 
+[info] 2 project(s) total.
+[debug] [2025-04-21T10:29:20.928Z] Error: Timed out.
+    at Timeout._onTimeout (/Users/souhaib./.nvm/versions/node/v22.14.0/lib/node_modules/firebase-tools/lib/utils.js:269:49)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2025-04-21T10:29:37.496Z] ----------------------------------------------------------------------
+[debug] [2025-04-21T10:29:37.498Z] Command:       /Users/souhaib./.nvm/versions/node/v22.14.0/bin/node /Users/souhaib./.nvm/versions/node/v22.14.0/bin/firebase use quizz-project-d8d8c
+[debug] [2025-04-21T10:29:37.498Z] CLI Version:   14.2.0
+[debug] [2025-04-21T10:29:37.498Z] Platform:      darwin
+[debug] [2025-04-21T10:29:37.498Z] Node Version:  v22.14.0
+[debug] [2025-04-21T10:29:37.499Z] Time:          Mon Apr 21 2025 11:29:37 GMT+0100 (GMT+01:00)
+[debug] [2025-04-21T10:29:37.499Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-04-21T10:29:37.606Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-04-21T10:29:37.607Z] > authorizing via signed-in user (souhaibaksikas@gmail.com)
+[debug] [2025-04-21T10:29:37.607Z] Checked if tokens are valid: true, expires at: 1745234858501
+[debug] [2025-04-21T10:29:37.607Z] Checked if tokens are valid: true, expires at: 1745234858501
+[debug] [2025-04-21T10:29:37.608Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/quizz-project-d8d8c [none]
+[debug] [2025-04-21T10:29:38.534Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/quizz-project-d8d8c 200
+[debug] [2025-04-21T10:29:38.534Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/quizz-project-d8d8c {"projectNumber":"475576911820","projectId":"quizz-project-d8d8c","lifecycleState":"ACTIVE","name":"quizz-project","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2025-04-14T08:10:27.010049Z"}
+[info] Now using project quizz-project-d8d8c
+[debug] [2025-04-21T10:29:48.551Z] Error: Timed out.
+    at Timeout._onTimeout (/Users/souhaib./.nvm/versions/node/v22.14.0/lib/node_modules/firebase-tools/lib/utils.js:269:49)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2025-04-21T10:29:58.541Z] ----------------------------------------------------------------------
+[debug] [2025-04-21T10:29:58.543Z] Command:       /Users/souhaib./.nvm/versions/node/v22.14.0/bin/node /Users/souhaib./.nvm/versions/node/v22.14.0/bin/firebase init
+[debug] [2025-04-21T10:29:58.544Z] CLI Version:   14.2.0
+[debug] [2025-04-21T10:29:58.544Z] Platform:      darwin
+[debug] [2025-04-21T10:29:58.544Z] Node Version:  v22.14.0
+[debug] [2025-04-21T10:29:58.544Z] Time:          Mon Apr 21 2025 11:29:58 GMT+0100 (GMT+01:00)
+[debug] [2025-04-21T10:29:58.544Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-04-21T10:29:58.643Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-04-21T10:29:58.643Z] > authorizing via signed-in user (souhaibaksikas@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/souhaib.
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2025-04-21T10:30:01.582Z] Using project from CLI flag: quizz-project-d8d8c
+[debug] [2025-04-21T10:30:01.583Z] Checked if tokens are valid: true, expires at: 1745234858501
+[debug] [2025-04-21T10:30:01.583Z] Checked if tokens are valid: true, expires at: 1745234858501
+[debug] [2025-04-21T10:30:01.585Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/quizz-project-d8d8c [none]
+[debug] [2025-04-21T10:30:02.044Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/quizz-project-d8d8c 200
+[debug] [2025-04-21T10:30:02.045Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/quizz-project-d8d8c {"projectId":"quizz-project-d8d8c","projectNumber":"475576911820","displayName":"quizz-project","name":"projects/quizz-project-d8d8c","resources":{"hostingSite":"quizz-project-d8d8c"},"state":"ACTIVE","etag":"1_c8c8f0b1-7623-4207-90c8-726c45dace9e"}
+[info] i  Using project quizz-project-d8d8c (quizz-project) 
+[info] 
+=== Hosting Setup
+[debug] [2025-04-21T10:30:02.054Z] Checked if tokens are valid: true, expires at: 1745234858501
+[debug] [2025-04-21T10:30:02.054Z] Checked if tokens are valid: true, expires at: 1745234858501
+[debug] [2025-04-21T10:30:02.055Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/quizz-project-d8d8c [none]
+[debug] [2025-04-21T10:30:02.281Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/quizz-project-d8d8c 200
+[debug] [2025-04-21T10:30:02.281Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/quizz-project-d8d8c {"projectId":"quizz-project-d8d8c","projectNumber":"475576911820","displayName":"quizz-project","name":"projects/quizz-project-d8d8c","resources":{"hostingSite":"quizz-project-d8d8c"},"state":"ACTIVE","etag":"1_c8c8f0b1-7623-4207-90c8-726c45dace9e"}
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
+[debug] [2025-04-21T10:30:21.858Z] >>> [apiv2][query] GET https://www.gstatic.com/firebasejs/releases.json [none]
+[debug] [2025-04-21T10:30:22.029Z] <<< [apiv2][status] GET https://www.gstatic.com/firebasejs/releases.json 200
+[debug] [2025-04-21T10:30:22.029Z] <<< [apiv2][body] GET https://www.gstatic.com/firebasejs/releases.json {"current":{"version":"11.6.0","browserURL":"https://www.gstatic.com/firebasejs/11.6.0/firebase.js","packageURL":"https://www.gstatic.com/firebasejs/11.6.0/firebase.tgz"},"live":{"version":"11.6","browserURL":"https://www.gstatic.com/firebasejs/live/11.6/firebase.js","packageURL":"https://www.gstatic.com/firebasejs/live/11.6/firebase.tgz"},"components":{"analytics":"https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js","app":"https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js","app-check":"https://www.gstatic.com/firebasejs/11.6.0/firebase-app-check.js","auth":"https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js","auth/cordova":"https://www.gstatic.com/firebasejs/11.6.0/firebase-auth/cordova.js","auth/web-extension":"https://www.gstatic.com/firebasejs/11.6.0/firebase-auth/web-extension.js","functions":"https://www.gstatic.com/firebasejs/11.6.0/firebase-functions.js","firestore":"https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js","firestore/lite":"https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore/lite.js","installations":"https://www.gstatic.com/firebasejs/11.6.0/firebase-installations.js","storage":"https://www.gstatic.com/firebasejs/11.6.0/firebase-storage.js","performance":"https://www.gstatic.com/firebasejs/11.6.0/firebase-performance.js","remote-config":"https://www.gstatic.com/firebasejs/11.6.0/firebase-remote-config.js","messaging":"https://www.gstatic.com/firebasejs/11.6.0/firebase-messaging.js","messaging/sw":"https://www.gstatic.com/firebasejs/11.6.0/firebase-messaging/sw.js","database":"https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js","vertexai":"https://www.gstatic.com/firebasejs/11.6.0/firebase-vertexai.js","data-connect":"https://www.gstatic.com/firebasejs/11.6.0/firebase-data-connect.js","firestore.memory":"https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.memory.js"}}
+[info] i  dist/index.html is unchanged 
+[info] 
+[info] i  Writing configuration info to firebase.json... 
+[info] i  Writing project information to .firebaserc... 
+[info] 
+[info] ✔  Firebase initialization complete! 
+[debug] [2025-04-21T10:30:32.041Z] Error: Timed out.
+    at Timeout._onTimeout (/Users/souhaib./.nvm/versions/node/v22.14.0/lib/node_modules/firebase-tools/lib/utils.js:269:49)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2025-04-21T10:31:17.828Z] ----------------------------------------------------------------------
+[debug] [2025-04-21T10:31:17.829Z] Command:       /Users/souhaib./.nvm/versions/node/v22.14.0/bin/node /Users/souhaib./.nvm/versions/node/v22.14.0/bin/firebase deploy
+[debug] [2025-04-21T10:31:17.830Z] CLI Version:   14.2.0
+[debug] [2025-04-21T10:31:17.830Z] Platform:      darwin
+[debug] [2025-04-21T10:31:17.830Z] Node Version:  v22.14.0
+[debug] [2025-04-21T10:31:17.830Z] Time:          Mon Apr 21 2025 11:31:17 GMT+0100 (GMT+01:00)
+[debug] [2025-04-21T10:31:17.830Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-04-21T10:31:17.937Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-04-21T10:31:17.937Z] > authorizing via signed-in user (souhaibaksikas@gmail.com)
+[debug] [2025-04-21T10:31:17.938Z] [iam] checking project quizz-project-d8d8c for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2025-04-21T10:31:17.938Z] Checked if tokens are valid: true, expires at: 1745234858501
+[debug] [2025-04-21T10:31:17.938Z] Checked if tokens are valid: true, expires at: 1745234858501
+[debug] [2025-04-21T10:31:17.939Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/quizz-project-d8d8c:testIamPermissions [none]
+[debug] [2025-04-21T10:31:17.939Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/quizz-project-d8d8c:testIamPermissions x-goog-quota-user=projects/quizz-project-d8d8c
+[debug] [2025-04-21T10:31:17.939Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/quizz-project-d8d8c:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-04-21T10:31:18.735Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/quizz-project-d8d8c:testIamPermissions 200
+[debug] [2025-04-21T10:31:18.735Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/quizz-project-d8d8c:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-04-21T10:31:18.736Z] Checked if tokens are valid: true, expires at: 1745234858501
+[debug] [2025-04-21T10:31:18.736Z] Checked if tokens are valid: true, expires at: 1745234858501
+[debug] [2025-04-21T10:31:18.736Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/quizz-project-d8d8c [none]
+[debug] [2025-04-21T10:31:19.138Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/quizz-project-d8d8c 200
+[debug] [2025-04-21T10:31:19.138Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/quizz-project-d8d8c {"projectId":"quizz-project-d8d8c","projectNumber":"475576911820","displayName":"quizz-project","name":"projects/quizz-project-d8d8c","resources":{"hostingSite":"quizz-project-d8d8c"},"state":"ACTIVE","etag":"1_c8c8f0b1-7623-4207-90c8-726c45dace9e"}
+[info] 
+[info] === Deploying to 'quizz-project-d8d8c'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2025-04-21T10:31:19.145Z] Checked if tokens are valid: true, expires at: 1745234858501
+[debug] [2025-04-21T10:31:19.145Z] Checked if tokens are valid: true, expires at: 1745234858501
+[debug] [2025-04-21T10:31:19.146Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/quizz-project-d8d8c/versions [none]
+[debug] [2025-04-21T10:31:19.146Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/quizz-project-d8d8c/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2025-04-21T10:31:20.776Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/quizz-project-d8d8c/versions 200
+[debug] [2025-04-21T10:31:20.776Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/quizz-project-d8d8c/versions {"name":"projects/475576911820/sites/quizz-project-d8d8c/versions/3954c54b8c3516c5","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  hosting[quizz-project-d8d8c]: beginning deploy... 
+[info] i  hosting[quizz-project-d8d8c]: found 1 files in dist 
+[debug] [2025-04-21T10:32:34.172Z] [hosting] uploading with 200 concurrency
+[debug] [2025-04-21T10:32:34.176Z] Checked if tokens are valid: true, expires at: 1745234858501
+[debug] [2025-04-21T10:32:34.176Z] Checked if tokens are valid: true, expires at: 1745234858501
+[debug] [2025-04-21T10:32:34.176Z] [hosting] hash cache [ZGlzdA] stored for 1 files
+[debug] [2025-04-21T10:32:34.176Z] [hosting][hash queue][FINAL] {"max":0,"min":0,"avg":0,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":1}
+[debug] [2025-04-21T10:32:34.177Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/475576911820/sites/quizz-project-d8d8c/versions/3954c54b8c3516c5:populateFiles [none]
+[debug] [2025-04-21T10:32:34.177Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/475576911820/sites/quizz-project-d8d8c/versions/3954c54b8c3516c5:populateFiles {"files":{"/index.html":"62a344b39279cbe8f6689c4e93552894036433df9d979ce5b76c0aed5f6be319"}}
+[debug] [2025-04-21T10:32:35.226Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/475576911820/sites/quizz-project-d8d8c/versions/3954c54b8c3516c5:populateFiles 200
+[debug] [2025-04-21T10:32:35.227Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/475576911820/sites/quizz-project-d8d8c/versions/3954c54b8c3516c5:populateFiles {"uploadRequiredHashes":["62a344b39279cbe8f6689c4e93552894036433df9d979ce5b76c0aed5f6be319"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/quizz-project-d8d8c/versions/3954c54b8c3516c5/files"}
+[debug] [2025-04-21T10:32:35.227Z] Checked if tokens are valid: true, expires at: 1745234858501
+[debug] [2025-04-21T10:32:35.227Z] Checked if tokens are valid: true, expires at: 1745234858501
+[debug] [2025-04-21T10:32:35.227Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/quizz-project-d8d8c/versions/3954c54b8c3516c5/files/62a344b39279cbe8f6689c4e93552894036433df9d979ce5b76c0aed5f6be319 [none]
+[debug] [2025-04-21T10:32:35.227Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/quizz-project-d8d8c/versions/3954c54b8c3516c5/files/62a344b39279cbe8f6689c4e93552894036433df9d979ce5b76c0aed5f6be319 [stream]
+[debug] [2025-04-21T10:32:35.229Z] [hosting][populate queue][FINAL] {"max":1051,"min":1051,"avg":1051,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":1053}
+[debug] [2025-04-21T10:32:35.229Z] [hosting] uploads queued: 1
+[debug] [2025-04-21T10:32:36.216Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/quizz-project-d8d8c/versions/3954c54b8c3516c5/files/62a344b39279cbe8f6689c4e93552894036433df9d979ce5b76c0aed5f6be319 200
+[debug] [2025-04-21T10:32:36.216Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/quizz-project-d8d8c/versions/3954c54b8c3516c5/files/62a344b39279cbe8f6689c4e93552894036433df9d979ce5b76c0aed5f6be319 [stream]
+[debug] [2025-04-21T10:32:36.216Z] [hosting][upload queue][FINAL] {"max":989,"min":989,"avg":989,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":989}
+[info] ✔  hosting[quizz-project-d8d8c]: file upload complete 
+[debug] [2025-04-21T10:32:36.217Z] [hosting] deploy completed after 2056ms
+[debug] [2025-04-21T10:32:36.217Z] [
+  {
+    "config": {
+      "public": "dist",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "quizz-project-d8d8c"
+    },
+    "version": "projects/475576911820/sites/quizz-project-d8d8c/versions/3954c54b8c3516c5"
+  }
+]
+[info] i  hosting[quizz-project-d8d8c]: finalizing version... 
+[debug] [2025-04-21T10:32:36.219Z] Checked if tokens are valid: true, expires at: 1745234858501
+[debug] [2025-04-21T10:32:36.219Z] Checked if tokens are valid: true, expires at: 1745234858501
+[debug] [2025-04-21T10:32:36.220Z] >>> [apiv2][query] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/quizz-project-d8d8c/versions/3954c54b8c3516c5 updateMask=status%2Cconfig
+[debug] [2025-04-21T10:32:36.220Z] >>> [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/quizz-project-d8d8c/versions/3954c54b8c3516c5 {"status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]}}
+[debug] [2025-04-21T10:32:36.920Z] <<< [apiv2][status] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/quizz-project-d8d8c/versions/3954c54b8c3516c5 200
+[debug] [2025-04-21T10:32:36.921Z] <<< [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/quizz-project-d8d8c/versions/3954c54b8c3516c5 {"name":"projects/475576911820/sites/quizz-project-d8d8c/versions/3954c54b8c3516c5","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2025-04-21T10:31:22.128777Z","createUser":{"email":"Souhaibaksikas@gmail.com"},"finalizeTime":"2025-04-21T10:32:38.767865Z","finalizeUser":{"email":"Souhaibaksikas@gmail.com"}}
+[debug] [2025-04-21T10:32:36.922Z] [hosting] finalized version for quizz-project-d8d8c:[object Object]
+[info] ✔  hosting[quizz-project-d8d8c]: version finalized 
+[info] i  hosting[quizz-project-d8d8c]: releasing new version... 
+[debug] [2025-04-21T10:32:36.922Z] Checked if tokens are valid: true, expires at: 1745234858501
+[debug] [2025-04-21T10:32:36.922Z] Checked if tokens are valid: true, expires at: 1745234858501
+[debug] [2025-04-21T10:32:36.923Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/quizz-project-d8d8c/channels/live/releases versionName=projects%2F475576911820%2Fsites%2Fquizz-project-d8d8c%2Fversions%2F3954c54b8c3516c5
+[debug] [2025-04-21T10:32:36.923Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/quizz-project-d8d8c/channels/live/releases {}
+[debug] [2025-04-21T10:32:37.578Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/quizz-project-d8d8c/channels/live/releases 200
+[debug] [2025-04-21T10:32:37.579Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/quizz-project-d8d8c/channels/live/releases {"name":"projects/475576911820/sites/quizz-project-d8d8c/channels/live/releases/1745231558768000","version":{"name":"projects/475576911820/sites/quizz-project-d8d8c/versions/3954c54b8c3516c5","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2025-04-21T10:31:22.128777Z","createUser":{"email":"Souhaibaksikas@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJw5uTZNj6FXKpgRsDOr2SYEtelSMe_qOQ0Ty1Y2jdW6Q7zWHhN"},"finalizeTime":"2025-04-21T10:32:38.767865Z","finalizeUser":{"email":"Souhaibaksikas@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJw5uTZNj6FXKpgRsDOr2SYEtelSMe_qOQ0Ty1Y2jdW6Q7zWHhN"}},"type":"DEPLOY","releaseTime":"2025-04-21T10:32:38.768Z","releaseUser":{"email":"Souhaibaksikas@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJw5uTZNj6FXKpgRsDOr2SYEtelSMe_qOQ0Ty1Y2jdW6Q7zWHhN"}}
+[debug] [2025-04-21T10:32:37.579Z] [hosting] release: {"name":"projects/475576911820/sites/quizz-project-d8d8c/channels/live/releases/1745231558768000","version":{"name":"projects/475576911820/sites/quizz-project-d8d8c/versions/3954c54b8c3516c5","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2025-04-21T10:31:22.128777Z","createUser":{"email":"Souhaibaksikas@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJw5uTZNj6FXKpgRsDOr2SYEtelSMe_qOQ0Ty1Y2jdW6Q7zWHhN"},"finalizeTime":"2025-04-21T10:32:38.767865Z","finalizeUser":{"email":"Souhaibaksikas@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJw5uTZNj6FXKpgRsDOr2SYEtelSMe_qOQ0Ty1Y2jdW6Q7zWHhN"}},"type":"DEPLOY","releaseTime":"2025-04-21T10:32:38.768Z","releaseUser":{"email":"Souhaibaksikas@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocJw5uTZNj6FXKpgRsDOr2SYEtelSMe_qOQ0Ty1Y2jdW6Q7zWHhN"}}
+[info] ✔  hosting[quizz-project-d8d8c]: release complete 
+[info] 
+[info] ✔  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/quizz-project-d8d8c/overview
+[info] Hosting URL: https://quizz-project-d8d8c.web.app
+[debug] [2025-04-21T10:34:02.609Z] Error: Timed out.
+    at Timeout._onTimeout (/Users/souhaib./.nvm/versions/node/v22.14.0/lib/node_modules/firebase-tools/lib/utils.js:269:49)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7)
+[error] 
+[error] Error: An unexpected error has occurred.
